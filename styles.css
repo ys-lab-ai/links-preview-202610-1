@@ -1,0 +1,186 @@
+/*
+ * 株式会社LINKS / 会社案内
+ * ビルド不要・外部依存なし。配色と寸法はここで管理する。
+ * 01 基本設定 / 02 ヘッダー / 03 社名 / 04 事業内容 / 05 会社概要 / 06 レスポンシブ
+ */
+
+:root {
+  --paper: #f5f4ee;
+  --ink: #242e2b;
+  --muted: #606860;
+  --line: #c4c8bf;
+  --accent: #a3482e;
+  --font-jp: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  --font-latin: "Helvetica Neue", Arial, sans-serif;
+  --gutter: clamp(24px, 5.55vw, 88px);
+  --section-rail: 22%;
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: 32px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-jp);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-text-size-adjust: 100%;
+  overflow-wrap: break-word;
+}
+::selection { background: #e5d2c3; color: var(--ink); }
+a { color: inherit; text-underline-offset: 6px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+h1, h2, h3, p, dl, dd { margin: 0; }
+h1, h2, h3 { font-weight: 500; }
+.page-shell { max-width: 1600px; margin-inline: auto; padding-inline: var(--gutter); }
+.skip-link { position: absolute; z-index: 5; left: 24px; top: -100px; padding: 12px 20px; background: var(--ink); color: var(--paper); }
+.skip-link:focus { top: 12px; }
+
+/* 02 / ヘッダー：全画面幅で常に二つのリンクを表示 */
+.site-header {
+  min-height: 108px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.site-label { display: flex; align-items: center; gap: 14px; font-size: 13px; letter-spacing: .12em; }
+.label-mark { width: 22px; height: 3px; background: var(--accent); }
+.site-header nav { display: flex; align-items: center; gap: 36px; }
+.site-header a { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; font-size: 13px; text-decoration: none; }
+.site-header a:hover { text-decoration: underline; }
+.nav-number { font-family: var(--font-latin); color: var(--muted); font-size: 11px; }
+
+/* 03 / 社名：ロゴではなく文字組み。正式ロゴの縦横比は変更しない */
+.introduction {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  align-items: end;
+  gap: 7%;
+  padding-block: clamp(72px, 8vw, 120px) 106px;
+}
+.company-prefix { display: block; margin-left: 5px; margin-bottom: 20px; font-size: 22px; line-height: 1.3; letter-spacing: .17em; }
+.company-word { display: block; font-family: var(--font-latin); font-size: clamp(110px, 14.5vw, 210px); font-weight: 500; line-height: .76; letter-spacing: -.065em; }
+.introduction-copy { padding-bottom: 2px; }
+.business-name { margin-bottom: 22px; font-size: clamp(20px, 1.8vw, 26px); letter-spacing: .06em; font-weight: 500; }
+.introduction-description { font-size: 15px; line-height: 2.1; letter-spacing: .035em; }
+.brand-logo { display: block; width: min(100%, 480px); height: auto; }
+
+/* 04 / 一本の線から分かれる二つの業務 */
+.section { display: grid; grid-template-columns: var(--section-rail) minmax(0, 1fr); border-top: 1px solid var(--ink); scroll-margin-top: 24px; }
+.section-heading { display: flex; align-items: baseline; gap: 22px; padding-top: 31px; }
+.section-number { font-family: var(--font-latin); font-size: 12px; color: var(--accent); }
+.section-heading h2 { font-size: 15px; letter-spacing: .1em; font-weight: 600; }
+.business-content { padding-block: 62px 76px; }
+.business-overview { position: relative; }
+.business-overview > p { font-size: clamp(25px, 2.5vw, 34px); line-height: 1.65; letter-spacing: .04em; }
+.junction { height: 76px; position: relative; }
+.junction::before { content: ""; position: absolute; left: calc(25% + 19px); top: 6px; bottom: 0; width: 1px; background: var(--line); }
+.junction span { position: absolute; top: 6px; left: calc(25% + 16px); width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.service-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.service { position: relative; padding: 48px 24px 0 0; }
+.service + .service { padding-left: 38px; }
+.service-node { position: absolute; top: 0; height: 28px; width: 100%; border-top: 1px solid var(--line); }
+.service:first-child .service-node { left: 0; width: calc(100% + 38px); }
+.service:last-child .service-node { left: 0; border-top: 0; }
+.service-node::after { content: ""; position: absolute; left: 0; top: 0; height: 26px; width: 1px; background: var(--line); }
+.service:last-child .service-node::after { left: 38px; }
+.service-node span { position: absolute; top: 25px; left: -3px; width: 7px; height: 7px; border: 1px solid var(--accent); border-radius: 50%; background: var(--paper); }
+.service:last-child .service-node span { left: 35px; }
+.service-index { margin-bottom: 22px; font-family: var(--font-latin); font-size: 11px; letter-spacing: .06em; color: var(--muted); }
+.service h3 { font-size: clamp(32px, 3.35vw, 46px); line-height: 1.4; letter-spacing: .04em; }
+.service-description { margin-top: 24px; font-size: 16px; letter-spacing: .03em; }
+
+/* 05 / 会社概要：情報は index.html の dl に行を足す */
+.company-section { padding-bottom: 96px; }
+.company-details { padding-top: 11px; }
+.detail-row { display: grid; grid-template-columns: 25% 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.detail-row dt { font-size: 13px; color: var(--muted); }
+.detail-row dd { font-size: 15px; letter-spacing: .03em; }
+.site-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 100px; border-top: 1px solid var(--line); }
+.site-footer small { font-size: 11px; letter-spacing: .03em; color: var(--muted); }
+.back-to-top { display: inline-flex; gap: 26px; align-items: center; min-height: 48px; font-size: 11px; text-decoration: none; }
+.back-to-top span { font-family: var(--font-latin); font-size: 21px; color: var(--accent); }
+.back-to-top:hover { text-decoration: underline; }
+
+/* 06 / 中間幅とスマートフォン */
+@media (max-width: 1050px) {
+  :root { --section-rail: 20%; }
+  .introduction { gap: 5%; }
+  .introduction-description { font-size: 13px; }
+  .desktop-break { display: none; }
+  .section-heading { gap: 13px; }
+}
+
+@media (max-width: 760px) {
+  :root { --gutter: 24px; }
+  html { scroll-padding-top: 18px; }
+  .site-header { min-height: 84px; gap: 16px; }
+  .site-label { font-size: 11px; gap: 9px; letter-spacing: .06em; }
+  .label-mark { width: 14px; height: 2px; }
+  .site-header nav { gap: 22px; }
+  .site-header a { font-size: 12px; }
+  .nav-number { display: none; }
+  .introduction { grid-template-columns: 1fr; gap: 42px; padding-block: 62px 62px; }
+  .company-prefix { margin-left: 2px; margin-bottom: 18px; font-size: 17px; }
+  .company-word { font-size: clamp(90px, 25vw, 180px); }
+  .business-name { margin-bottom: 14px; font-size: 20px; }
+  .introduction-description { max-width: 30em; font-size: 14px; line-height: 2; }
+  .section { grid-template-columns: 1fr; scroll-margin-top: 16px; }
+  .section-heading { padding-top: 22px; gap: 18px; }
+  .section-heading h2 { font-size: 14px; }
+  .business-content { padding-block: 42px 54px; }
+  .business-overview > p { font-size: 27px; line-height: 1.7; }
+  .junction { height: 44px; margin-top: 24px; }
+  .junction::before { left: 0; top: 0; }
+  .junction span { top: 0; left: -3px; }
+  .service-grid { grid-template-columns: 1fr; }
+  .service, .service + .service { border-left: 1px solid var(--line); padding: 0 0 0 31px; }
+  .service:first-child { padding-bottom: 46px; }
+  .service:last-child { border-left-color: transparent; }
+  .service-node, .service:first-child .service-node, .service:last-child .service-node { top: 0; left: -1px; height: 1px; width: 18px; border-top: 1px solid var(--line); }
+  .service-node::after { display: none; }
+  .service-node span, .service:last-child .service-node span { top: -4px; left: 15px; }
+  .service-index { margin-bottom: 12px; position: relative; top: -8px; }
+  .service h3 { font-size: 35px; }
+  .service-description { margin-top: 13px; font-size: 15px; }
+  .company-section { padding-bottom: 54px; }
+  .company-details { padding-top: 22px; }
+  .detail-row { grid-template-columns: 28% 1fr; gap: 18px; padding-block: 21px; }
+  .detail-row dt { font-size: 12px; }
+  .detail-row dd { font-size: 14px; }
+  .site-footer { min-height: 92px; gap: 16px; }
+  .back-to-top { gap: 13px; }
+}
+
+@media (max-width: 360px) {
+  :root { --gutter: 20px; }
+  .site-header nav { gap: 16px; }
+  .introduction-description { font-size: 13px; }
+  .business-overview > p { font-size: 25px; }
+  .detail-row { grid-template-columns: 27% 1fr; gap: 12px; }
+  .site-footer small, .back-to-top { font-size: 10px; }
+}
+
+/* 印刷でも会社案内として読める。閲覧にアニメーションやJSを必要としない。 */
+@media print {
+  @page { size: A4; margin: 16mm; }
+  body { background: #fff; font-size: 11pt; }
+  .page-shell { max-width: none; padding: 0; }
+  .site-header { min-height: 35px; }
+  .site-header nav, .back-to-top, .skip-link { display: none; }
+  .introduction { padding-block: 45px; }
+  .company-word { font-size: 110px; }
+  .company-prefix { font-size: 17px; }
+  .business-content { padding-block: 30px; }
+  .business-overview > p { font-size: 24px; }
+  .junction { height: 50px; }
+  .service h3 { font-size: 30px; }
+  .service-description { font-size: 12px; }
+  .company-section { padding-bottom: 30px; }
+  .detail-row { padding-block: 15px; }
+  .site-footer { min-height: 45px; }
+  .section { break-inside: avoid; }
+}
